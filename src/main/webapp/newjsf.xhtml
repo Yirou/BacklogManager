@@ -1,0 +1,19 @@
+ <h:dataTable var="b" value="#{entreebean.allEntry}" class="table table-condensed">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:panelGroup class="col-md-3 col-sm-6 hero-feature">
+                                        <h:panelGroup class="thumbnail">
+                                            <img src="http://placehold.it/800x500" alt=""></img>
+
+                                            <h:panelGroup class="caption">
+                                                <h3>#{b.name}</h3>
+
+                                                <p>#{b.name}</p>
+
+
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </f:facet>
+                            </h:column>
+                        </h:dataTable>

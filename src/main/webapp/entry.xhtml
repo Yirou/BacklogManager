@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="left">
+                <h:panelGroup>
+                    <h:form id="entry">
+                        <h:outputLabel value="Nom Entrée" for="name"></h:outputLabel>
+                        <h:inputText value="#{entreebean.entry.name}" id="name" class="form-control"></h:inputText><br></br>
+                        <h:outputLabel for="priority" value="Priorité"></h:outputLabel>
+                        <h:inputText value="#{entreebean.entry.priority}" id="priority" class="form-control">
+                            <f:convertNumber integerOnly="true" type="number" />
+                        </h:inputText>
+                        <h:outputLabel for="estimation" value="Estimation"></h:outputLabel>
+                        <h:inputText value="#{entreebean.entry.estimation}" id="estimation" class="form-control">
+                            <f:convertNumber integerOnly="true" type="number" />
+                        </h:inputText>
+                        <h:outputLabel for="description" value="Description"></h:outputLabel>
+                        <h:inputTextarea value="#{entreebean.entry.description}" id="description" class="form-control"></h:inputTextarea><br></br>
+                        <h:commandButton action="#{entreebean.addEntry}" value="add" class="btn btn-info"></h:commandButton>
+                        <h:messages   />
+                    </h:form>
+                </h:panelGroup>
+            </ui:define>
+            <ui:define name="content">
+                <h:panelGroup class="row">
+                    <h:panelGroup class="col-lg-6 col-md-6">
+                        <h:form>
+
+                            <ui:repeat var="b" value="#{entreebean.allEntry}" >
+
+                                <h:form>
+                                    <h:panelGroup class="col-md-3 col-sm-3 hero-feature">
+                                        <h:panelGroup class="thumbnail">
+                                            <img src="http://placehold.it/800x500" alt=""></img>
+                                            <h:panelGroup class="caption">
+                                                <h:commandButton value="#{b.name}" action="#{entreebean.access(b)}" class="btn btn-info form-control" ></h:commandButton>
+                                            </h:panelGroup>
+
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </h:form>
+
+                            </ui:repeat>
+
+                        </h:form>
+                    </h:panelGroup>
+                    <h:panelGroup class="col-lg-6 col-md-6">
+                        <h:form id="comment">
+                            <h:inputText class="form-control" value="#{commentbean.comment.description}" ></h:inputText>
+                            <br></br>
+                            <h:commandButton action="#{commentbean.addComment}" value="Add comment" class="btn btn-info"></h:commandButton>
+                            <h:messages/>
+                        </h:form>
+
+                        <h:panelGroup>
+                            <h:form>
+
+                                <hr></hr>
+                                <c:forEach var="c" items="#{commentbean.allComments}">
+                                    <label>#{c.user.name} :</label>
+                                    <label>#{c.description}</label>
+                                    <hr></hr>
+                                </c:forEach>
+                            </h:form>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                </h:panelGroup>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+
+

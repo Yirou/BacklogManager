@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="top">
+                <h:form>
+                    <h:inputText id="name" value="#{userBean.user.name}" class="right input-sm" required="true" h:placeholder="name">
+                    </h:inputText>
+                    <h:inputSecret id="password" value="#{userBean.user.password}" class="right input-sm" required="true">
+                    </h:inputSecret>
+                    |
+                    <h:commandButton value="Login" action="#{userBean.login()}" class="btn btn-success"/> 
+
+                </h:form>
+                <h:form>
+                    <h:commandButton value="Inscription" action="#{userBean.inscription()}" class="btn btn-success"/>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+</html>
