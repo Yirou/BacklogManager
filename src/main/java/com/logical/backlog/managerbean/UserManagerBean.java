@@ -38,6 +38,8 @@ public class UserManagerBean implements Serializable {
 
     public String saveUser() {
         userDao.add(user);
+        //wrong solution
+        SessionBean.getSession().setAttribute("isLogin", true);
         return index();
     }
 
