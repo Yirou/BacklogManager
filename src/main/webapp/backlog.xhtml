@@ -10,20 +10,26 @@
                 <h:outputLabel value="agence"></h:outputLabel>
             </ui:define>
             <ui:define name="content">
+
+                <h:form>
+                    <h:commandButton action="#{agencebean.agencePage}" class="btn btn-info" value="Liste des agences">
+                    </h:commandButton>
+                </h:form>
                 <hr></hr>
-                <h:outputLabel value="Liste des backlogs"></h:outputLabel>
+
                 <h:panelGroup>
                     <h:form>
                         <h:outputLabel value="Ajouter un backlog"></h:outputLabel>
-                        <hr></hr>
-                        <h:outputLabel value="nom du backlog"></h:outputLabel>
+
                         <h:inputText value="#{backlogbean.backlog.name}" class="form-control">
                         </h:inputText>
+                        <br></br>
                         <h:commandButton action="#{backlogbean.save()}" value="Save" class="btn btn-info">
                         </h:commandButton>
                     </h:form>
                 </h:panelGroup>
-                <br></br>
+                <hr></hr>
+                <h:outputLabel value="Liste des backlogs"></h:outputLabel>
                 <h:dataTable var="b" value="#{backlogbean.allBacklogs}" class="table table-condensed">
                     <h:column>
                         <f:facet name="head">Nom

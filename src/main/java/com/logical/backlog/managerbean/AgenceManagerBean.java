@@ -9,22 +9,17 @@ import com.logical.backlog.iDao.AgenceDaoLocal;
 import com.logical.backlog.iDao.BacklogDaoLocal;
 import com.logical.backlog.iDao.UserDaoLocal;
 import com.logical.backlog.model.Agence;
-import com.logical.backlog.model.Backlog;
-import com.logical.backlog.model.Entries;
-import com.logical.backlog.model.User;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author yirou
  */
 @ManagedBean(name = "agencebean")
-@SessionScoped
+@RequestScoped
 public class AgenceManagerBean {
 
     private Agence agence;
@@ -62,7 +57,7 @@ public class AgenceManagerBean {
 
     }
 
-    private String agencePage() {
+    public String agencePage() {
         return "agence";
     }
 

@@ -6,18 +6,14 @@
 package com.logical.backlog.managerbean;
 
 import com.logical.backlog.iDao.BacklogDaoLocal;
-import com.logical.backlog.iDao.CommentDaoLocal;
 import com.logical.backlog.iDao.EntryDaoLocal;
 import com.logical.backlog.model.Backlog;
-import com.logical.backlog.model.Comment;
 import com.logical.backlog.model.Entries;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 
 /**
  *

@@ -11,20 +11,19 @@ import com.logical.backlog.iDao.EntryDaoLocal;
 import com.logical.backlog.iDao.UserDaoLocal;
 import com.logical.backlog.model.Agence;
 import com.logical.backlog.model.Backlog;
-import com.logical.backlog.model.Entries;
 import com.logical.backlog.model.User;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author yirou
  */
 @ManagedBean(name = "backlogbean")
-@SessionScoped
+@RequestScoped
 public class BacklogManagerBean {
 
     @EJB
@@ -52,6 +51,7 @@ public class BacklogManagerBean {
 
     public String access(Backlog backlog) {
         SessionBean.getSession().setAttribute("backlog", backlog);
+        SessionBean.getSession().setAttribute("entry", null);
         return "entry";
     }
 
@@ -59,6 +59,10 @@ public class BacklogManagerBean {
         backlogDao.detele(backlog);
         return "backlog";
 
+    }
+
+    public String backlog() {
+        return "backlog";
     }
 
     public List<Backlog> getAllBacklogs() {

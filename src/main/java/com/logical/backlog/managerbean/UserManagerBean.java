@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -19,11 +19,11 @@ import javax.servlet.http.HttpSession;
  * @author yirou
  */
 @ManagedBean(name = "userBean", eager = true)
-@SessionScoped
+@RequestScoped
 public class UserManagerBean implements Serializable {
 
     public User user;
-
+    public boolean login = false;
     @EJB
     private UserDaoLocal userDao;
 
@@ -38,7 +38,15 @@ public class UserManagerBean implements Serializable {
 
     public String saveUser() {
         userDao.add(user);
-        return listUser();
+        return index();
+    }
+
+    public boolean isLogin() {
+        return login;
+    }
+
+    public void setLogin(boolean login) {
+        this.login = login;
     }
 
     public List<User> getAllUser() {
@@ -47,26 +55,36 @@ public class UserManagerBean implements Serializable {
 
     public String login() {
         boolean isLogin = userDao.login(user);
-        String page = "agence";
         HttpSession session = SessionBean.getSession();
         if (isLogin) {
-            user=userDao.get(user);
+            user = userDao.get(user);
             session.setAttribute("isLogin", true);
+            login = true;
             session.setAttribute("user", user);
         } else {
             session.setAttribute("isLogin", false);
-            return inscription();
+        }
+        return index();
+    }
+
+    public String index() {
+        String page = "index";
+        
+        if(SessionBean.getSession()!=null){
+            Object object=SessionBean.getSession().getAttribute("isLogin");
+            if(Boolean.parseBoolean(object.toString()))
+                page="agence";
         }
         return page;
     }
 
-    public String inscription() {
-        return "add-user";
+    public String logout() {
+        SessionBean.getSession().invalidate();
+        return index();
     }
 
-    public String listUser() {
-
-        return "index";
+    public String inscription() {
+        return "add-user";
     }
 
     public User getUser() {
